@@ -11,3 +11,6 @@ __pycache__/
 .env.*
 !.env.example
 frontend/public/firebase-messaging-sw.js
+
+# Generated frontend build
+/frontend/dist/

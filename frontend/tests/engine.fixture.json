@@ -1,0 +1,1000 @@
+{
+  "state": {
+    "run_id": "30ea9d74bb204a9f8fc1d71842434dc5",
+    "scenario": "twin_crisis",
+    "seed": 26,
+    "running": false,
+    "duration": 18,
+    "pending_count": 0,
+    "current": {
+      "minute": 3,
+      "probabilities": {
+        "NOISE": 0.14507850544126186,
+        "SENSOR_FAILURE": 0.06444642043599533,
+        "ISOLATED_INCIDENT": 0.4647165086546994,
+        "CASCADING_CRISIS": 0.32575856546804355
+      },
+      "decision": {
+        "action": "ALERT",
+        "expected_cost": 12.50762878453455,
+        "costs": {
+          "WATCH": 52.85055755895682,
+          "PREPARE": 25.159688793887277,
+          "ALERT": 12.50762878453455,
+          "ESCALATE": 19.10151077848525
+        },
+        "base_costs": {
+          "WATCH": 49.5081303078766,
+          "PREPARE": 23.32135380579315,
+          "ALERT": 11.839143334318504,
+          "ESCALATE": 18.767268053377226
+        },
+        "lead_time_costs": {
+          "WATCH": 3.342427251080224,
+          "PREPARE": 1.8383349880941253,
+          "ALERT": 0.6684854502160462,
+          "ESCALATE": 0.3342427251080231
+        },
+        "deadline_miss_mass": 0.2763172486237695,
+        "held_by_hysteresis": false,
+        "reason": "Minimum expected configured loss, including forecast-probability-weighted preparation effectiveness, subject to switching margin and downgrade hold."
+      },
+      "forecasts": [
+        {
+          "component": "underpass",
+          "event_type": "underpass_disruption",
+          "probability": 0.5595424284631333,
+          "window": [
+            5,
+            8
+          ],
+          "path": [
+            "drainage",
+            "underpass"
+          ],
+          "supporting_observations": [
+            "e0001"
+          ],
+          "basis": "Configured strongest dependency path; simulated assumptions",
+          "uncertainty": "Illustrative conditional propagation and delay intervals; no field calibration",
+          "assumptions": [
+            "Manually specified directed dependencies",
+            "Strongest path, not sum of correlated paths",
+            "Recent reported condition seeds the current forecast horizon"
+          ]
+        },
+        {
+          "component": "hospital",
+          "event_type": "hospital_disruption",
+          "probability": 0.41965682134735,
+          "window": [
+            5,
+            9
+          ],
+          "path": [
+            "junction",
+            "hospital"
+          ],
+          "supporting_observations": [
+            "e0002"
+          ],
+          "basis": "Configured strongest dependency path; simulated assumptions",
+          "uncertainty": "Illustrative conditional propagation and delay intervals; no field calibration",
+          "assumptions": [
+            "Manually specified directed dependencies",
+            "Strongest path, not sum of correlated paths",
+            "Recent reported condition seeds the current forecast horizon"
+          ]
+        },
+        {
+          "component": "alternate_road",
+          "event_type": "alternate_road_disruption",
+          "probability": 0.3147426160105125,
+          "window": [
+            5,
+            8
+          ],
+          "path": [
+            "junction",
+            "alternate_road"
+          ],
+          "supporting_observations": [
+            "e0002"
+          ],
+          "basis": "Configured strongest dependency path; simulated assumptions",
+          "uncertainty": "Illustrative conditional propagation and delay intervals; no field calibration",
+          "assumptions": [
+            "Manually specified directed dependencies",
+            "Strongest path, not sum of correlated paths",
+            "Recent reported condition seeds the current forecast horizon"
+          ]
+        }
+      ],
+      "deadlines": [
+        {
+          "name": "Prepare alternate emergency-access route",
+          "response_minutes": [
+            2,
+            5
+          ],
+          "target_probability": 0.8,
+          "failure": "underpass",
+          "latest_start": 1.88,
+          "minutes_remaining": -1.12,
+          "conditional_on_failure": true,
+          "event_probability": 0.5595424284631333,
+          "failure_window": [
+            5,
+            8
+          ],
+          "decision_minute": 3,
+          "effectiveness_if_started_now": 0.5061728395061729,
+          "description": "Model-estimated action deadline; independent uniform failure/response delay assumptions. Event probability separately weights expected loss."
+        },
+        {
+          "name": "Pre-position response team",
+          "response_minutes": [
+            1,
+            4
+          ],
+          "target_probability": 0.8,
+          "failure": "underpass",
+          "latest_start": 2.88,
+          "minutes_remaining": -0.12,
+          "conditional_on_failure": true,
+          "event_probability": 0.5595424284631333,
+          "failure_window": [
+            5,
+            8
+          ],
+          "decision_minute": 3,
+          "effectiveness_if_started_now": 0.7736625514403292,
+          "description": "Model-estimated action deadline; independent uniform failure/response delay assumptions. Event probability separately weights expected loss."
+        }
+      ],
+      "voi": {
+        "strategies": [
+          {
+            "id": "verify_first",
+            "label": "Verify first",
+            "expected_cost": 13.716977733710863
+          },
+          {
+            "id": "prepare_now",
+            "label": "Prepare immediately",
+            "expected_cost": 12.50762878453455
+          },
+          {
+            "id": "parallel",
+            "label": "Verify while preparing",
+            "expected_cost": 13.81735816453329
+          },
+          {
+            "id": "no_check",
+            "label": "No additional verification",
+            "expected_cost": 12.50762878453455
+          }
+        ],
+        "recommendation": "Prepare now",
+        "selected_check": null,
+        "baseline_risk": 12.50762878453455,
+        "delay_harm_rate": 1.5883088091085933,
+        "checks": [
+          {
+            "id": "water",
+            "label": "Independent water sensor",
+            "positive": [
+              0.08,
+              0.12,
+              0.7,
+              0.88
+            ],
+            "delay": 1,
+            "cost": 0.4,
+            "inconclusive": 0.1,
+            "expected_risk_after_check": 12.170103532657334,
+            "evsi": 0.3375252518772154,
+            "delay_harm": 1.5883088091085933,
+            "deadline_penalty": 0.2948618971781496,
+            "parallel_deadline_penalty": 0.18571648687208864,
+            "net_value": -1.9456454544095276,
+            "parallel_net_value": -1.6423456395491698,
+            "outcomes": [
+              {
+                "outcome": "positive",
+                "probability": 0.5681780501020095,
+                "posterior": [
+                  0.01838447013202193,
+                  0.012250056836651597,
+                  0.5152810820479549,
+                  0.4540843909833715
+                ],
+                "optimal_action": "ESCALATE",
+                "parallel_action": "ESCALATE"
+              },
+              {
+                "outcome": "negative",
+                "probability": 0.3318219498979907,
+                "posterior": [
+                  0.3620164444886599,
+                  0.15382214769396538,
+                  0.37813489244862236,
+                  0.1060265153687524
+                ],
+                "optimal_action": "ALERT",
+                "parallel_action": "PREPARE"
+              },
+              {
+                "outcome": "inconclusive",
+                "probability": 0.10000000000000002,
+                "posterior": [
+                  0.14507850544126183,
+                  0.06444642043599531,
+                  0.4647165086546993,
+                  0.32575856546804355
+                ],
+                "optimal_action": "ALERT",
+                "parallel_action": "ALERT"
+              }
+            ]
+          },
+          {
+            "id": "gateway",
+            "label": "Gateway diagnostic",
+            "positive": [
+              0.05,
+              0.9,
+              0.1,
+              0.18
+            ],
+            "delay": 0.5,
+            "cost": 0.2,
+            "inconclusive": 0.05,
+            "expected_risk_after_check": 12.507628784534548,
+            "evsi": 1.7763568394002505e-15,
+            "delay_harm": 0.7941544045542966,
+            "deadline_penalty": 0.21519454462201892,
+            "parallel_deadline_penalty": 0.11265217772159453,
+            "net_value": -1.2093489491763139,
+            "parallel_net_value": -1.309729379998741,
+            "outcomes": [
+              {
+                "outcome": "positive",
+                "probability": 0.16184570149846783,
+                "posterior": [
+                  0.042579005464196254,
+                  0.340458158373132,
+                  0.2727787510786277,
+                  0.344184085084044
+                ],
+                "optimal_action": "ALERT",
+                "parallel_action": "ALERT"
+              },
+              {
+                "outcome": "negative",
+                "probability": 0.7881542985015323,
+                "posterior": [
+                  0.16612654579144476,
+                  0.007768034702163909,
+                  0.5041304927920729,
+                  0.3219749267143185
+                ],
+                "optimal_action": "ALERT",
+                "parallel_action": "ALERT"
+              },
+              {
+                "outcome": "inconclusive",
+                "probability": 0.05000000000000001,
+                "posterior": [
+                  0.14507850544126183,
+                  0.06444642043599531,
+                  0.4647165086546993,
+                  0.32575856546804355
+                ],
+                "optimal_action": "ALERT",
+                "parallel_action": "ALERT"
+              }
+            ]
+          },
+          {
+            "id": "observer",
+            "label": "Safe opt-in observation",
+            "positive": [
+              0.16,
+              0.2,
+              0.65,
+              0.78
+            ],
+            "delay": 2,
+            "cost": 0.8,
+            "inconclusive": 0.25,
+            "expected_risk_after_check": 12.50762878453455,
+            "evsi": 0.0,
+            "delay_harm": 3.1766176182171866,
+            "deadline_penalty": 0.6072076172795757,
+            "parallel_deadline_penalty": 0.3788084217890919,
+            "net_value": -4.583825235496763,
+            "parallel_net_value": -3.3671172308976853,
+            "outcomes": [
+              {
+                "outcome": "positive",
+                "probability": 0.44419444248632217,
+                "posterior": [
+                  0.03919324284091533,
+                  0.021762908629134797,
+                  0.5100228105085803,
+                  0.42902103802136954
+                ],
+                "optimal_action": "ALERT",
+                "parallel_action": "ALERT"
+              },
+              {
+                "outcome": "negative",
+                "probability": 0.30580555751367794,
+                "posterior": [
+                  0.2988809594276484,
+                  0.1264458781455196,
+                  0.3989073465952375,
+                  0.17576581583159445
+                ],
+                "optimal_action": "ALERT",
+                "parallel_action": "ALERT"
+              },
+              {
+                "outcome": "inconclusive",
+                "probability": 0.25,
+                "posterior": [
+                  0.14507850544126186,
+                  0.06444642043599533,
+                  0.4647165086546994,
+                  0.32575856546804355
+                ],
+                "optimal_action": "ALERT",
+                "parallel_action": "ALERT"
+              }
+            ]
+          }
+        ],
+        "explanation": "EVSI = current minimum expected loss \u2212 expected posterior minimum loss. Net value subtracts acquisition cost, per-state delay harm, and increased expected loss from reduced preparation effectiveness. The latter is weighted by forecast event probability. Parallel preparation halves the start delay and adds 0.6 mobilization units. All parameters are illustrative."
+      },
+      "zones": [
+        {
+          "id": "north",
+          "name": "North Ward",
+          "routes": 3,
+          "backup_power": true,
+          "facility_minutes": 6,
+          "sensors": 4,
+          "dependencies": [
+            "junction",
+            "hospital"
+          ],
+          "consequence_score": 0.217,
+          "evidence_status": "available",
+          "missing_sources": 0,
+          "fresh_sources": 1,
+          "explanation": "Structural consequences only; this score does not increase incident probability. Missing telemetry is not evidence of safety."
+        },
+        {
+          "id": "river",
+          "name": "River Quarter",
+          "routes": 0,
+          "backup_power": false,
+          "facility_minutes": 18,
+          "sensors": 3,
+          "dependencies": [
+            "underpass",
+            "substation",
+            "gateway"
+          ],
+          "consequence_score": 0.965,
+          "evidence_status": "available",
+          "missing_sources": 0,
+          "fresh_sources": 2,
+          "explanation": "Structural consequences only; this score does not increase incident probability. Missing telemetry is not evidence of safety."
+        },
+        {
+          "id": "east",
+          "name": "East District",
+          "routes": 1,
+          "backup_power": true,
+          "facility_minutes": 11,
+          "sensors": 2,
+          "dependencies": [
+            "alternate_road",
+            "dispatch"
+          ],
+          "consequence_score": 0.417,
+          "evidence_status": "unknown",
+          "missing_sources": 0,
+          "fresh_sources": 0,
+          "explanation": "Structural consequences only; this score does not increase incident probability. Missing telemetry is not evidence of safety."
+        }
+      ],
+      "evidence_trace": [
+        {
+          "minute": 1,
+          "group": "source:weather",
+          "events": [
+            "e0000"
+          ],
+          "log_likelihood": [
+            -0.867500567704723,
+            -0.867500567704723,
+            -0.5447271754416722,
+            -0.3011050927839215
+          ]
+        },
+        {
+          "minute": 2,
+          "group": "gateway:gw-river",
+          "events": [
+            "e0001"
+          ],
+          "log_likelihood": [
+            -2.0249533563957662,
+            -1.4105870536889353,
+            -0.4780358009429998,
+            -0.21815600980317063
+          ]
+        },
+        {
+          "minute": 3,
+          "group": "source:traffic-1",
+          "events": [
+            "e0002"
+          ],
+          "log_likelihood": [
+            -1.5141277326297757,
+            -1.4105870536889353,
+            -0.616186139423817,
+            -0.3566749439387323
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "source": "weather",
+          "kind": "rain_high",
+          "zone": "north",
+          "gateway": null,
+          "reliability": 0.8,
+          "last_seen": 1,
+          "status": "reporting"
+        },
+        {
+          "source": "level-r1",
+          "kind": "water_high",
+          "zone": "river",
+          "gateway": "gw-river",
+          "reliability": 0.8,
+          "last_seen": 2,
+          "status": "reporting"
+        },
+        {
+          "source": "traffic-1",
+          "kind": "traffic_slow",
+          "zone": "river",
+          "gateway": null,
+          "reliability": 0.8,
+          "last_seen": 3,
+          "status": "reporting"
+        }
+      ],
+      "gateways": [
+        {
+          "gateway": "gw-river",
+          "status": "reporting",
+          "last_seen": 2
+        }
+      ],
+      "delta": {
+        "NOISE": -0.12529319118553753,
+        "SENSOR_FAILURE": -0.05088696064256948,
+        "ISOLATED_INCIDENT": 0.06730907472216335,
+        "CASCADING_CRISIS": 0.10887107710594371
+      },
+      "visible_event_ids": [
+        "e0000",
+        "e0001",
+        "e0002"
+      ],
+      "active_event_ids": [
+        "e0000",
+        "e0001",
+        "e0002"
+      ],
+      "initial_source_betas": {},
+      "model_version": "beforepoint-0.2-illustrative",
+      "configuration_hash": "5e746fdb8ab33595d90baf2fa1f92c53d0bfa28eaf6e1e897c3ca2b285602e03",
+      "supporting_evidence": [
+        {
+          "id": "e0000",
+          "source_id": "weather",
+          "kind": "rain_high",
+          "zone_id": "north",
+          "event_time": 1,
+          "arrival_time": 1,
+          "reliability": 0.86,
+          "gateway": null,
+          "correlation_group": null,
+          "payload": {},
+          "retracts": null
+        },
+        {
+          "id": "e0001",
+          "source_id": "level-r1",
+          "kind": "water_high",
+          "zone_id": "river",
+          "event_time": 2,
+          "arrival_time": 2,
+          "reliability": 0.86,
+          "gateway": "gw-river",
+          "correlation_group": null,
+          "payload": {},
+          "retracts": null
+        },
+        {
+          "id": "e0002",
+          "source_id": "traffic-1",
+          "kind": "traffic_slow",
+          "zone_id": "river",
+          "event_time": 3,
+          "arrival_time": 3,
+          "reliability": 0.86,
+          "gateway": null,
+          "correlation_group": null,
+          "payload": {},
+          "retracts": null
+        }
+      ],
+      "explanation": "3 available reports; 3 recent dependency groups. Missing readings represent lost evidence. Probabilities are model estimates using illustrative likelihoods.",
+      "previous_hash": "aed2b4c052d0c60169b7bb2f6b332faac5c2daa64885f52aa2267ce9a8132bee",
+      "hash": "c8e134896fb845b01771c22f6d27545961a84c000fe5b515476d7a5e4179ff44"
+    },
+    "history": [
+      {
+        "minute": 0,
+        "probabilities": {
+          "NOISE": 0.6499999999999999,
+          "SENSOR_FAILURE": 0.14999999999999997,
+          "ISOLATED_INCIDENT": 0.14999999999999997,
+          "CASCADING_CRISIS": 0.05
+        },
+        "action": "PREPARE",
+        "hash": "ec217e19166851aa7925acf9ca8ead94f1faedc22e54d829c3b5ee21ffa9052d"
+      },
+      {
+        "minute": 1,
+        "probabilities": {
+          "NOISE": 0.5934782608695652,
+          "SENSOR_FAILURE": 0.13695652173913045,
+          "ISOLATED_INCIDENT": 0.18913043478260866,
+          "CASCADING_CRISIS": 0.08043478260869566
+        },
+        "action": "PREPARE",
+        "hash": "1d3ab2faac0e13d6cdc0274c2e277c00a8c5e0d46f0af8eec850e676fb4e5151"
+      },
+      {
+        "minute": 2,
+        "probabilities": {
+          "NOISE": 0.2703716966267994,
+          "SENSOR_FAILURE": 0.1153333810785648,
+          "ISOLATED_INCIDENT": 0.397407433932536,
+          "CASCADING_CRISIS": 0.21688748836209984
+        },
+        "action": "ALERT",
+        "hash": "aed2b4c052d0c60169b7bb2f6b332faac5c2daa64885f52aa2267ce9a8132bee"
+      },
+      {
+        "minute": 3,
+        "probabilities": {
+          "NOISE": 0.14507850544126186,
+          "SENSOR_FAILURE": 0.06444642043599533,
+          "ISOLATED_INCIDENT": 0.4647165086546994,
+          "CASCADING_CRISIS": 0.32575856546804355
+        },
+        "action": "ALERT",
+        "hash": "c8e134896fb845b01771c22f6d27545961a84c000fe5b515476d7a5e4179ff44"
+      }
+    ],
+    "events": [
+      {
+        "id": "e0002",
+        "source_id": "traffic-1",
+        "kind": "traffic_slow",
+        "zone_id": "river",
+        "event_time": 3,
+        "arrival_time": 3,
+        "reliability": 0.86,
+        "gateway": null,
+        "correlation_group": null,
+        "payload": {},
+        "retracts": null
+      },
+      {
+        "id": "e0001",
+        "source_id": "level-r1",
+        "kind": "water_high",
+        "zone_id": "river",
+        "event_time": 2,
+        "arrival_time": 2,
+        "reliability": 0.86,
+        "gateway": "gw-river",
+        "correlation_group": null,
+        "payload": {},
+        "retracts": null
+      },
+      {
+        "id": "e0000",
+        "source_id": "weather",
+        "kind": "rain_high",
+        "zone_id": "north",
+        "event_time": 1,
+        "arrival_time": 1,
+        "reliability": 0.86,
+        "gateway": null,
+        "correlation_group": null,
+        "payload": {},
+        "retracts": null
+      }
+    ]
+  },
+  "config": {
+    "version": "beforepoint-0.2-illustrative",
+    "hypotheses": [
+      "NOISE",
+      "SENSOR_FAILURE",
+      "ISOLATED_INCIDENT",
+      "CASCADING_CRISIS"
+    ],
+    "prior": [
+      0.65,
+      0.15,
+      0.15,
+      0.05
+    ],
+    "monsoon_prior": [
+      0.4,
+      0.15,
+      0.3,
+      0.15
+    ],
+    "transition_persistence": 0.94,
+    "hysteresis_margin": 0.7,
+    "downgrade_hold_minutes": 2,
+    "actions": [
+      "WATCH",
+      "PREPARE",
+      "ALERT",
+      "ESCALATE"
+    ],
+    "costs": [
+      [
+        0,
+        3,
+        22,
+        120
+      ],
+      [
+        3,
+        5,
+        10,
+        55
+      ],
+      [
+        15,
+        20,
+        4,
+        20
+      ],
+      [
+        45,
+        50,
+        18,
+        2
+      ]
+    ],
+    "likelihoods": {
+      "rain_high": [
+        0.4,
+        0.4,
+        0.6,
+        0.8
+      ],
+      "water_high": [
+        0.04,
+        0.18,
+        0.65,
+        0.88
+      ],
+      "water_normal": [
+        0.9,
+        0.4,
+        0.25,
+        0.1
+      ],
+      "traffic_slow": [
+        0.15,
+        0.18,
+        0.55,
+        0.75
+      ],
+      "calls_surge": [
+        0.04,
+        0.12,
+        0.55,
+        0.85
+      ],
+      "stream_missing": [
+        0.08,
+        0.85,
+        0.15,
+        0.45
+      ],
+      "gateway_down": [
+        0.02,
+        0.95,
+        0.06,
+        0.1
+      ],
+      "gateway_up": [
+        0.95,
+        0.1,
+        0.92,
+        0.85
+      ],
+      "power_loss": [
+        0.01,
+        0.06,
+        0.2,
+        0.8
+      ],
+      "road_closed": [
+        0.01,
+        0.04,
+        0.65,
+        0.85
+      ],
+      "citizen_yes": [
+        0.1,
+        0.18,
+        0.65,
+        0.8
+      ],
+      "citizen_no": [
+        0.8,
+        0.65,
+        0.3,
+        0.18
+      ],
+      "citizen_unknown": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "hospital_surge": [
+        0.02,
+        0.08,
+        0.45,
+        0.85
+      ],
+      "dispatch_delay": [
+        0.04,
+        0.15,
+        0.5,
+        0.75
+      ]
+    },
+    "checks": [
+      {
+        "id": "water",
+        "label": "Independent water sensor",
+        "positive": [
+          0.08,
+          0.12,
+          0.7,
+          0.88
+        ],
+        "delay": 1,
+        "cost": 0.4,
+        "inconclusive": 0.1
+      },
+      {
+        "id": "gateway",
+        "label": "Gateway diagnostic",
+        "positive": [
+          0.05,
+          0.9,
+          0.1,
+          0.18
+        ],
+        "delay": 0.5,
+        "cost": 0.2,
+        "inconclusive": 0.05
+      },
+      {
+        "id": "observer",
+        "label": "Safe opt-in observation",
+        "positive": [
+          0.16,
+          0.2,
+          0.65,
+          0.78
+        ],
+        "delay": 2,
+        "cost": 0.8,
+        "inconclusive": 0.25
+      }
+    ],
+    "delay_harm_per_minute": [
+      0,
+      0.1,
+      0.6,
+      4
+    ],
+    "nodes": [
+      "rainfall",
+      "drainage",
+      "gateway",
+      "underpass",
+      "junction",
+      "substation",
+      "hospital",
+      "dispatch",
+      "alternate_road"
+    ],
+    "edges": [
+      {
+        "from": "rainfall",
+        "to": "drainage",
+        "probability": 0.65,
+        "delay": [
+          2,
+          5
+        ],
+        "meaning": "Heavy rain can exceed drainage capacity"
+      },
+      {
+        "from": "drainage",
+        "to": "underpass",
+        "probability": 0.8,
+        "delay": [
+          2,
+          5
+        ],
+        "meaning": "Drainage overload can flood the underpass"
+      },
+      {
+        "from": "underpass",
+        "to": "junction",
+        "probability": 0.7,
+        "delay": [
+          1,
+          4
+        ],
+        "meaning": "Underpass closure diverts traffic to the junction"
+      },
+      {
+        "from": "underpass",
+        "to": "substation",
+        "probability": 0.35,
+        "delay": [
+          3,
+          7
+        ],
+        "meaning": "Floodwater can interrupt low-lying power equipment"
+      },
+      {
+        "from": "substation",
+        "to": "gateway",
+        "probability": 0.75,
+        "delay": [
+          1,
+          3
+        ],
+        "meaning": "Power loss can disable the gateway"
+      },
+      {
+        "from": "junction",
+        "to": "hospital",
+        "probability": 0.6,
+        "delay": [
+          2,
+          6
+        ],
+        "meaning": "Congestion can delay emergency access"
+      },
+      {
+        "from": "gateway",
+        "to": "dispatch",
+        "probability": 0.35,
+        "delay": [
+          2,
+          5
+        ],
+        "meaning": "Lost telemetry can impair dispatch coordination"
+      },
+      {
+        "from": "junction",
+        "to": "alternate_road",
+        "probability": 0.45,
+        "delay": [
+          2,
+          5
+        ],
+        "meaning": "Diverted traffic can congest the alternate route"
+      }
+    ],
+    "zones": [
+      {
+        "id": "north",
+        "name": "North Ward",
+        "routes": 3,
+        "backup_power": true,
+        "facility_minutes": 6,
+        "sensors": 4,
+        "dependencies": [
+          "junction",
+          "hospital"
+        ]
+      },
+      {
+        "id": "river",
+        "name": "River Quarter",
+        "routes": 0,
+        "backup_power": false,
+        "facility_minutes": 18,
+        "sensors": 3,
+        "dependencies": [
+          "underpass",
+          "substation",
+          "gateway"
+        ]
+      },
+      {
+        "id": "east",
+        "name": "East District",
+        "routes": 1,
+        "backup_power": true,
+        "facility_minutes": 11,
+        "sensors": 2,
+        "dependencies": [
+          "alternate_road",
+          "dispatch"
+        ]
+      }
+    ],
+    "preparations": [
+      {
+        "name": "Prepare alternate emergency-access route",
+        "response_minutes": [
+          2,
+          5
+        ],
+        "target_probability": 0.8
+      },
+      {
+        "name": "Pre-position response team",
+        "response_minutes": [
+          1,
+          4
+        ],
+        "target_probability": 0.8
+      }
+    ],
+    "lead_time_consequences": [
+      0,
+      0,
+      5,
+      30
+    ],
+    "action_lead_time_weights": [
+      1.0,
+      0.55,
+      0.2,
+      0.1
+    ]
+  }
+}

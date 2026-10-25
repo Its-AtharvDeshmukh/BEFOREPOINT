@@ -1,0 +1,19 @@
+import {useState,type ButtonHTMLAttributes,type ReactNode} from 'react';
+import {cva} from 'class-variance-authority';
+import * as Tooltip from '@radix-ui/react-tooltip';
+import {LoaderCircle,AlertTriangle,ArrowUpRight,Info,ChevronDown} from 'lucide-react';
+import {cn} from '../lib/utils';
+const variants=cva('button',{variants:{variant:{default:'button-primary',outline:'button-outline',ghost:'button-ghost',danger:'button-danger'},size:{default:'',sm:'button-sm',icon:'button-icon'}},defaultVariants:{variant:'outline',size:'default'}});
+export function Button({variant='outline',size='default',className,...props}:ButtonHTMLAttributes<HTMLButtonElement>&{variant?:'default'|'outline'|'ghost'|'danger',size?:'default'|'sm'|'icon'}){return <button className={cn(variants({variant,size}),className)} {...props}/>}
+export function Badge({children,tone='neutral',className=''}:{children:ReactNode,tone?:'neutral'|'green'|'amber'|'red'|'blue'|'violet',className?:string}){return <span className={cn('badge',`badge-${tone}`,className)}>{children}</span>}
+export function Panel({children,title,eyebrow,action,className='',id}:{children:ReactNode,title?:ReactNode,eyebrow?:string,action?:ReactNode,className?:string,id?:string}){return <section className={cn('panel',className)} id={id}>{(title||action)&&<div className="panel-top"><div>{eyebrow&&<div className="eyebrow">{eyebrow}</div>}{title&&<h2>{title}</h2>}</div>{action}</div>}{children}</section>}
+export function Help({children,label='Explain this term'}:{children:ReactNode,label?:string}){return <Tooltip.Root><Tooltip.Trigger asChild><button className="help" aria-label={label}><Info size={13}/></button></Tooltip.Trigger><Tooltip.Portal><Tooltip.Content className="tooltip" sideOffset={7}>{children}<Tooltip.Arrow className="tooltip-arrow"/></Tooltip.Content></Tooltip.Portal></Tooltip.Root>}
+export function Loading({label='Loading calculated data…'}:{label?:string}){return <div className="empty-state"><LoaderCircle className="spinner" size={25}/><p>{label}</p></div>}
+export function Empty({title,description,action}:{title:string,description?:string,action?:ReactNode}){return <div className="empty-state"><Info size={25}/><h3>{title}</h3>{description&&<p>{description}</p>}{action}</div>}
+export function ErrorState({error,retry}:{error:string,retry?:()=>void}){return <div role="alert" className="callout callout-error"><AlertTriangle size={18}/><div><strong>Unable to load this data</strong><p>{error}</p>{retry&&<Button size="sm" onClick={retry}>Try again</Button>}</div></div>}
+export function PageIntro({kicker,title,description,action}:{kicker:string,title:string,description:string,action?:ReactNode}){return <div className="page-intro"><div><div className="eyebrow">{kicker}</div><h1>{title}</h1><p>{description}</p></div>{action}</div>}
+export function Callout({children,tone='neutral'}:{children:ReactNode,tone?:'neutral'|'amber'|'green'}){return <div className={cn('callout',`callout-${tone}`)}><Info size={17}/><div>{children}</div></div>}
+export function TextLink({children,onClick}:{children:ReactNode,onClick:()=>void}){return <button className="text-link" onClick={onClick}>{children}<ArrowUpRight size={14}/></button>}
+export function Stat({label,value,hint,tone}:{label:string,value:ReactNode,hint?:string,tone?:string}){return <div className="stat"><span>{label}</span><strong style={tone?{color:tone}:undefined}>{value}</strong>{hint&&<small>{hint}</small>}</div>}
+
+export function Disclosure({title,description,action,children}:{title:string,description:string,action?:ReactNode,children:ReactNode}){const [open,setOpen]=useState(false);return <details className="workspace-disclosure" onToggle={event=>setOpen(event.currentTarget.open)}><summary><span><strong>{title}</strong><small>{description}</small></span>{action}<ChevronDown size={17}/></summary>{open&&<div className="disclosure-content">{children}</div>}</details>}
