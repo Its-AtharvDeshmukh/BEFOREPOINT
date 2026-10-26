@@ -14,4 +14,7 @@ include = ["sentinel*"]
 [tool.setuptools.package-data]
 sentinel = ["config.json"]
 [tool.pytest.ini_options]
+
+
 testpaths = ["tests"]
+
