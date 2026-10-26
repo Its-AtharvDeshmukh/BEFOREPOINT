@@ -1,0 +1,312 @@
+{
+  "responsive": [
+    {
+      "page": "Command Center",
+      "documentWidth": 375,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "The situation, in focus.",
+      "width": 375
+    },
+    {
+      "page": "PROVE ME WRONG",
+      "documentWidth": 375,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What would change our mind?",
+      "width": 375
+    },
+    {
+      "page": "CASCADE CUT",
+      "documentWidth": 375,
+      "fatal": false,
+      "graphs": 9,
+      "heading": "Interrupt the next domino.",
+      "width": 375
+    },
+    {
+      "page": "INVISIBLE LIFELINES",
+      "documentWidth": 375,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What remains when the signals disappear?",
+      "width": 375
+    },
+    {
+      "page": "Command Center",
+      "documentWidth": 430,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "The situation, in focus.",
+      "width": 430
+    },
+    {
+      "page": "PROVE ME WRONG",
+      "documentWidth": 430,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What would change our mind?",
+      "width": 430
+    },
+    {
+      "page": "CASCADE CUT",
+      "documentWidth": 430,
+      "fatal": false,
+      "graphs": 9,
+      "heading": "Interrupt the next domino.",
+      "width": 430
+    },
+    {
+      "page": "INVISIBLE LIFELINES",
+      "documentWidth": 430,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What remains when the signals disappear?",
+      "width": 430
+    },
+    {
+      "page": "Command Center",
+      "documentWidth": 768,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "The situation, in focus.",
+      "width": 768
+    },
+    {
+      "page": "PROVE ME WRONG",
+      "documentWidth": 768,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What would change our mind?",
+      "width": 768
+    },
+    {
+      "page": "CASCADE CUT",
+      "documentWidth": 768,
+      "fatal": false,
+      "graphs": 9,
+      "heading": "Interrupt the next domino.",
+      "width": 768
+    },
+    {
+      "page": "INVISIBLE LIFELINES",
+      "documentWidth": 768,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What remains when the signals disappear?",
+      "width": 768
+    },
+    {
+      "page": "Command Center",
+      "documentWidth": 1024,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "The situation, in focus.",
+      "width": 1024
+    },
+    {
+      "page": "PROVE ME WRONG",
+      "documentWidth": 1024,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What would change our mind?",
+      "width": 1024
+    },
+    {
+      "page": "CASCADE CUT",
+      "documentWidth": 1024,
+      "fatal": false,
+      "graphs": 9,
+      "heading": "Interrupt the next domino.",
+      "width": 1024
+    },
+    {
+      "page": "INVISIBLE LIFELINES",
+      "documentWidth": 1024,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What remains when the signals disappear?",
+      "width": 1024
+    },
+    {
+      "page": "Command Center",
+      "documentWidth": 1440,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "The situation, in focus.",
+      "width": 1440
+    },
+    {
+      "page": "PROVE ME WRONG",
+      "documentWidth": 1440,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What would change our mind?",
+      "width": 1440
+    },
+    {
+      "page": "CASCADE CUT",
+      "documentWidth": 1440,
+      "fatal": false,
+      "graphs": 9,
+      "heading": "Interrupt the next domino.",
+      "width": 1440
+    },
+    {
+      "page": "INVISIBLE LIFELINES",
+      "documentWidth": 1440,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What remains when the signals disappear?",
+      "width": 1440
+    },
+    {
+      "page": "Command Center",
+      "documentWidth": 1920,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "The situation, in focus.",
+      "width": 1920
+    },
+    {
+      "page": "PROVE ME WRONG",
+      "documentWidth": 1920,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What would change our mind?",
+      "width": 1920
+    },
+    {
+      "page": "CASCADE CUT",
+      "documentWidth": 1920,
+      "fatal": false,
+      "graphs": 9,
+      "heading": "Interrupt the next domino.",
+      "width": 1920
+    },
+    {
+      "page": "INVISIBLE LIFELINES",
+      "documentWidth": 1920,
+      "fatal": false,
+      "graphs": 0,
+      "heading": "What remains when the signals disappear?",
+      "width": 1920
+    }
+  ],
+  "navigation": [
+    {
+      "page": "Command Center",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "The situation, in focus.",
+      "width": 1440
+    },
+    {
+      "page": "PROVE ME WRONG",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "What would change our mind?",
+      "width": 1440
+    },
+    {
+      "page": "CASCADE CUT",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "Interrupt the next domino.",
+      "width": 1440
+    },
+    {
+      "page": "INVISIBLE LIFELINES",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "What remains when the signals disappear?",
+      "width": 1440
+    },
+    {
+      "page": "Live Conditions",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "Live conditions",
+      "width": 1440
+    },
+    {
+      "page": "City Intelligence",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "City intelligence",
+      "width": 1440
+    },
+    {
+      "page": "Twin Test",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "Same evidence. Different futures.",
+      "width": 1440
+    },
+    {
+      "page": "Evaluation",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "Measure the model. Keep the misses.",
+      "width": 1440
+    },
+    {
+      "page": "Forecast Receipts",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "A record before the reveal.",
+      "width": 1440
+    },
+    {
+      "page": "Citizen Observations",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "A safe observation can help.",
+      "width": 1440
+    },
+    {
+      "page": "Notifications",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "Your browser. Your choice.",
+      "width": 1440
+    },
+    {
+      "page": "Integrations",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "Every connection, accounted for.",
+      "width": 1440
+    },
+    {
+      "page": "Model & Assumptions",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "An inspectable model. Explicit limits.",
+      "width": 1440
+    },
+    {
+      "page": "Settings",
+      "documentWidth": 1440,
+      "fatal": false,
+      "heading": "Make the workspace yours.",
+      "width": 1440
+    }
+  ],
+  "interactions": {
+    "mobile_navigation": true,
+    "verification_requested_and_applied": true,
+    "insufficient_resources": true,
+    "late_preparation": true,
+    "blackout_six_of_ten": true,
+    "river_coverage_before": 0.5,
+    "river_coverage_after": 0,
+    "river_structure_before": 0.965,
+    "river_structure_after": 0.965,
+    "evaluation_dashboard": true,
+    "map_component_selection": true,
+    "map_layer_controls": true,
+    "live_gusts_pressure_visibility_daily": true,
+    "console_errors": 0
+  }
+}

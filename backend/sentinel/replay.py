@@ -26,6 +26,8 @@ class Replay:
         self.running=False
         self.last_change=-99
         self.pending=[]
+        self.disabled_streams=set()
+        self.blackout=None
         self.store.save_run(self.run_id,{'scenario':scenario,'seed':seed,'shifted':shifted,'model_version':C['version'],'configuration':C,'initial_source_betas':self.initial_source_betas,'events':[e.model_dump() for e in self.episode.events],'withheld_outcome':self.episode.truth,'withheld_failures':self.episode.failures})
         self.step()
 
@@ -44,6 +46,8 @@ class Replay:
         # All newly submitted observations take effect on the next simulated minute.
         with self.lock:
             if self.minute>=self.episode.duration: raise ValueError('Episode finished; reset before submitting')
+            if event.source_id in self.disabled_streams and event.kind not in ('stream_missing','gateway_down'):
+                raise ValueError('This synthetic stream is disconnected; reset the scenario to restore it')
             if event.arrival_time != self.minute+1 or event.event_time>event.arrival_time:
                 raise ValueError('Submission arrival must equal the next simulated minute')
             if event.kind in ('retraction','verification'):
@@ -65,6 +69,8 @@ class Replay:
             self.minute+=1
             for event in (*self.episode.events,*self.pending):
                 if event.arrival_time==self.minute:
+                    if event.source_id in self.disabled_streams and event.kind not in ('stream_missing','gateway_down'):
+                        continue
                     self.ingest(event)
             self.pending=[e for e in self.pending if e.arrival_time>self.minute]
             p,active,trace,scores=self.engine.estimate(list(self.events.values()),self.minute)
@@ -77,9 +83,9 @@ class Replay:
             source_latest={}
             gateway_latest={}
             for e in sorted(active,key=lambda e:(e.arrival_time,e.id)):
-                if e.kind in C['likelihoods']:
+                if e.kind in C['likelihoods'] or e.kind=='verification_result':
                     source_latest[e.source_id]={'source':e.source_id,'kind':e.kind,'zone':e.zone_id,'gateway':e.gateway,
-                        'reliability':scores.get(e.source_id,.8),'last_seen':e.event_time,
+                        'reliability':min(e.reliability,scores.get(e.source_id,.8)),'last_seen':e.event_time,
                         'status':'missing' if e.kind in ('stream_missing','gateway_down') else ('stale' if self.minute-e.event_time>4 else 'reporting')}
                 if e.gateway:
                     gateway_latest[e.gateway]={'gateway':e.gateway,'status':'unconfirmed loss' if e.kind=='stream_missing' else ('offline' if e.kind=='gateway_down' else 'online' if e.kind=='gateway_up' else 'reporting'),'last_seen':e.event_time}
@@ -100,7 +106,7 @@ class Replay:
     def state(self):
         with self.lock:
             return {'run_id':self.run_id,'scenario':self.scenario,'seed':self.seed,'running':self.running,
-                'duration':self.episode.duration,'pending_count':len(self.pending),
+                'duration':self.episode.duration,'pending_count':len(self.pending),'blackout':self.blackout,
                 'current':self.history[-1] if self.history else None,
                 'history':[{'minute':r['minute'],'probabilities':r['probabilities'],'action':r['decision']['action'],'hash':r['hash']} for r in self.history],
                 'events':[e.model_dump() for e in sorted(self.events.values(),key=lambda e:(-e.arrival_time,e.id))]}

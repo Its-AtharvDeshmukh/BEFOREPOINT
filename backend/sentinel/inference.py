@@ -27,15 +27,19 @@ class BayesianFilter:
             p = C['transition_persistence']*p + (1-C['transition_persistence'])*prior
             groups = defaultdict(list)
             for e in active:
-                if e.arrival_time == t and e.kind in C['likelihoods']:
+                if e.arrival_time == t and (e.kind in C['likelihoods'] or e.kind=='verification_result'):
                     if e.source_id.startswith('citizen:'):
                         if e.zone_id in citizen_seen: continue
                     r = effective_reliability(e, scores, self.weighting)
                     # Stale reports are less informative, never treated as current normality.
                     r *= np.exp(-0.12*(t-e.event_time))
-                    likelihood = np.array(C['likelihoods'][e.kind])
-                    # Unreliable component is hypothesis-independent contamination.
-                    mixed = r*likelihood + (1-r)*.5
+                    if e.kind=='verification_result':
+                        from .verification_catalog import outcome_likelihood
+                        mixed=outcome_likelihood(e.payload['candidate_id'],e.payload['outcome'],r)
+                    else:
+                        likelihood = np.array(C['likelihoods'][e.kind])
+                        # Unreliable component is hypothesis-independent contamination.
+                        mixed = r*likelihood + (1-r)*.5
                     groups[dependency_key(e, self.gateway_aware)].append((e,np.log(mixed)))
             citizen_seen.update(e.zone_id for reports in groups.values() for e,_ in reports if e.source_id.startswith('citizen:'))
             logp = np.log(np.maximum(p, 1e-100))

@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field, model_validator, ConfigDict
 
 KINDS = Literal['rain_high','water_high','water_normal','traffic_slow','calls_surge',
     'stream_missing','gateway_down','gateway_up','power_loss','road_closed',
-    'citizen_yes','citizen_no','citizen_unknown','hospital_surge','dispatch_delay','retraction','verification','baseline_shift']
+    'citizen_yes','citizen_no','citizen_unknown','hospital_surge','dispatch_delay','retraction','verification','baseline_shift','verification_result']
 
 class Event(BaseModel):
     model_config = ConfigDict(extra='forbid', frozen=True)
@@ -27,6 +27,11 @@ class Event(BaseModel):
             raise ValueError('Retraction/verification must reference a report')
         if self.kind == 'verification' and (type(self.payload.get('correct')) is not bool or self.source_id != 'operator'):
             raise ValueError('Verification requires operator adjudication and a boolean correct')
+        if self.kind == 'verification_result':
+            from .verification_catalog import BY_ID
+            candidate=self.payload.get('candidate_id')
+            if candidate not in BY_ID or self.source_id != BY_ID[candidate]['source'] or self.payload.get('outcome') not in ('positive','negative','inconclusive'):
+                raise ValueError('Verification result requires a catalog instrument and a valid outcome')
         return self
 
 class ResetRequest(BaseModel):

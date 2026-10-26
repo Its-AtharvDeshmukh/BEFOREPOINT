@@ -1,0 +1,950 @@
+{
+  "seeds": [
+    104729,
+    130363,
+    155921
+  ],
+  "decision_minute": 4,
+  "policies": {
+    "unchanged_engine": {
+      "episodes": 72,
+      "checks_requested": 0,
+      "brier": 0.13517286573100826,
+      "episode_loss": 230.23611111111111,
+      "acquisition_cost": 0.0,
+      "check_fee_when_action_unchanged": 0.0,
+      "action_changes": 2.8055555555555554,
+      "false_alarm_rate": 0.6666666666666666,
+      "missed_crisis_rate": 0.0,
+      "mean_detection_delay": 0.0,
+      "mean_detection_lead_time": 8.0
+    },
+    "original_check_policy": {
+      "episodes": 72,
+      "checks_requested": 36,
+      "brier": 0.13325259486566868,
+      "episode_loss": 226.00555555555556,
+      "acquisition_cost": 0.19999999999999998,
+      "check_fee_when_action_unchanged": 0.11666666666666667,
+      "action_changes": 2.6805555555555554,
+      "false_alarm_rate": 0.6666666666666666,
+      "missed_crisis_rate": 0.0,
+      "mean_detection_delay": 0.0,
+      "mean_detection_lead_time": 8.0
+    },
+    "prove_me_wrong": {
+      "episodes": 72,
+      "checks_requested": 36,
+      "brier": 0.13322224412713804,
+      "episode_loss": 225.48194444444445,
+      "acquisition_cost": 0.20416666666666666,
+      "check_fee_when_action_unchanged": 0.12361111111111112,
+      "action_changes": 2.6805555555555554,
+      "false_alarm_rate": 0.6666666666666666,
+      "missed_crisis_rate": 0.0,
+      "mean_detection_delay": 0.0,
+      "mean_detection_lead_time": 8.0
+    },
+    "blackout_60_percent": {
+      "episodes": 72,
+      "checks_requested": 0,
+      "brier": 0.13689554673070592,
+      "episode_loss": 231.86111111111111,
+      "acquisition_cost": 0.0,
+      "check_fee_when_action_unchanged": 0.0,
+      "action_changes": 2.9444444444444446,
+      "false_alarm_rate": 0.75,
+      "missed_crisis_rate": 0.0,
+      "mean_detection_delay": 0.0,
+      "mean_detection_lead_time": 8.0
+    }
+  },
+  "paired_prove_loss_reduction": 0.5236111111111114,
+  "cascade": {
+    "trials": 72,
+    "resource_feasibility_rate": 1.0,
+    "heldout_mean_net_benefit": 7.726725260416667,
+    "positive_benefit_fraction": 0.9722222222222222,
+    "details": [
+      {
+        "scenario": "normal_rain",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "monitor",
+        "feasible": true,
+        "heldout_net_benefit": 0.0,
+        "interval": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "scenario": "flood",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.1171875,
+        "interval": [
+          8.62418947778816,
+          13.61018552221184
+        ]
+      },
+      {
+        "scenario": "isolated",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.1171875,
+        "interval": [
+          8.62418947778816,
+          13.61018552221184
+        ]
+      },
+      {
+        "scenario": "gateway_failure",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "monitor",
+        "feasible": true,
+        "heldout_net_benefit": 0.0,
+        "interval": [
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "scenario": "misinformation",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.388671875,
+        "interval": [
+          -0.3139618551870662,
+          3.091305605187066
+        ]
+      },
+      {
+        "scenario": "delayed_calls",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.1171875,
+        "interval": [
+          8.62418947778816,
+          13.61018552221184
+        ]
+      },
+      {
+        "scenario": "missing_streams",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.1171875,
+        "interval": [
+          8.62418947778816,
+          13.61018552221184
+        ]
+      },
+      {
+        "scenario": "monsoon",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.75390625,
+        "interval": [
+          -0.840432089167507,
+          2.348244589167507
+        ]
+      },
+      {
+        "scenario": "twin_crisis",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 13.97265625,
+        "interval": [
+          11.60477328803885,
+          16.34053921196115
+        ]
+      },
+      {
+        "scenario": "twin_benign",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 13.97265625,
+        "interval": [
+          11.60477328803885,
+          16.34053921196115
+        ]
+      },
+      {
+        "scenario": "silent_zone",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.1171875,
+        "interval": [
+          8.62418947778816,
+          13.61018552221184
+        ]
+      },
+      {
+        "scenario": "ambiguous",
+        "seed": 104729,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 13.97265625,
+        "interval": [
+          11.60477328803885,
+          16.34053921196115
+        ]
+      },
+      {
+        "scenario": "normal_rain",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.107421875,
+        "interval": [
+          -1.4256278499518704,
+          1.6404715999518704
+        ]
+      },
+      {
+        "scenario": "flood",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.716796875,
+        "interval": [
+          6.267983999579316,
+          11.165609750420684
+        ]
+      },
+      {
+        "scenario": "isolated",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.716796875,
+        "interval": [
+          6.267983999579316,
+          11.165609750420684
+        ]
+      },
+      {
+        "scenario": "gateway_failure",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.107421875,
+        "interval": [
+          -1.4256278499518704,
+          1.6404715999518704
+        ]
+      },
+      {
+        "scenario": "misinformation",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.65625,
+        "interval": [
+          -0.9621215773888268,
+          2.2746215773888268
+        ]
+      },
+      {
+        "scenario": "delayed_calls",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.716796875,
+        "interval": [
+          6.267983999579316,
+          11.165609750420684
+        ]
+      },
+      {
+        "scenario": "missing_streams",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.716796875,
+        "interval": [
+          6.267983999579316,
+          11.165609750420684
+        ]
+      },
+      {
+        "scenario": "monsoon",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.31640625,
+        "interval": [
+          -1.2563261708411126,
+          1.8891386708411126
+        ]
+      },
+      {
+        "scenario": "twin_crisis",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 10.984375,
+        "interval": [
+          8.7978316561043,
+          13.1709183438957
+        ]
+      },
+      {
+        "scenario": "twin_benign",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 10.984375,
+        "interval": [
+          8.7978316561043,
+          13.1709183438957
+        ]
+      },
+      {
+        "scenario": "silent_zone",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.716796875,
+        "interval": [
+          6.267983999579316,
+          11.165609750420684
+        ]
+      },
+      {
+        "scenario": "ambiguous",
+        "seed": 130363,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 10.984375,
+        "interval": [
+          8.7978316561043,
+          13.1709183438957
+        ]
+      },
+      {
+        "scenario": "normal_rain",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.021484375,
+        "interval": [
+          -0.6216447910463596,
+          2.66461354104636
+        ]
+      },
+      {
+        "scenario": "flood",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 10.93359375,
+        "interval": [
+          8.306625460128688,
+          13.560562039871312
+        ]
+      },
+      {
+        "scenario": "isolated",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 10.93359375,
+        "interval": [
+          8.306625460128688,
+          13.560562039871312
+        ]
+      },
+      {
+        "scenario": "gateway_failure",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.021484375,
+        "interval": [
+          -0.6216447910463596,
+          2.66461354104636
+        ]
+      },
+      {
+        "scenario": "misinformation",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.8046875,
+        "interval": [
+          0.054045582735074094,
+          3.555329417264926
+        ]
+      },
+      {
+        "scenario": "delayed_calls",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 10.93359375,
+        "interval": [
+          8.306625460128688,
+          13.560562039871312
+        ]
+      },
+      {
+        "scenario": "missing_streams",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 10.93359375,
+        "interval": [
+          8.306625460128688,
+          13.560562039871312
+        ]
+      },
+      {
+        "scenario": "monsoon",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.021484375,
+        "interval": [
+          -0.6216447910463596,
+          2.66461354104636
+        ]
+      },
+      {
+        "scenario": "twin_crisis",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 12.15625,
+        "interval": [
+          9.945007646930836,
+          14.367492353069164
+        ]
+      },
+      {
+        "scenario": "twin_benign",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 12.15625,
+        "interval": [
+          9.945007646930836,
+          14.367492353069164
+        ]
+      },
+      {
+        "scenario": "silent_zone",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 10.93359375,
+        "interval": [
+          8.306625460128688,
+          13.560562039871312
+        ]
+      },
+      {
+        "scenario": "ambiguous",
+        "seed": 155921,
+        "shifted": false,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 12.15625,
+        "interval": [
+          9.945007646930836,
+          14.367492353069164
+        ]
+      },
+      {
+        "scenario": "normal_rain",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.75390625,
+        "interval": [
+          -0.840432089167507,
+          2.348244589167507
+        ]
+      },
+      {
+        "scenario": "flood",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.673828125,
+        "interval": [
+          9.150623117854645,
+          14.197033132145355
+        ]
+      },
+      {
+        "scenario": "isolated",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.673828125,
+        "interval": [
+          9.150623117854645,
+          14.197033132145355
+        ]
+      },
+      {
+        "scenario": "gateway_failure",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.75390625,
+        "interval": [
+          -0.840432089167507,
+          2.348244589167507
+        ]
+      },
+      {
+        "scenario": "misinformation",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.744140625,
+        "interval": [
+          -0.01884175422703871,
+          3.5071230042270387
+        ]
+      },
+      {
+        "scenario": "delayed_calls",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.673828125,
+        "interval": [
+          9.150623117854645,
+          14.197033132145355
+        ]
+      },
+      {
+        "scenario": "missing_streams",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.673828125,
+        "interval": [
+          9.150623117854645,
+          14.197033132145355
+        ]
+      },
+      {
+        "scenario": "monsoon",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.75390625,
+        "interval": [
+          -0.840432089167507,
+          2.348244589167507
+        ]
+      },
+      {
+        "scenario": "twin_crisis",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 14.283203125,
+        "interval": [
+          11.925305220160176,
+          16.641101029839824
+        ]
+      },
+      {
+        "scenario": "twin_benign",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 14.283203125,
+        "interval": [
+          11.925305220160176,
+          16.641101029839824
+        ]
+      },
+      {
+        "scenario": "silent_zone",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.673828125,
+        "interval": [
+          9.150623117854645,
+          14.197033132145355
+        ]
+      },
+      {
+        "scenario": "ambiguous",
+        "seed": 104729,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 14.283203125,
+        "interval": [
+          11.925305220160176,
+          16.641101029839824
+        ]
+      },
+      {
+        "scenario": "normal_rain",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.31640625,
+        "interval": [
+          -1.2563261708411126,
+          1.8891386708411126
+        ]
+      },
+      {
+        "scenario": "flood",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.74609375,
+        "interval": [
+          6.295413645204441,
+          11.196773854795559
+        ]
+      },
+      {
+        "scenario": "isolated",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.74609375,
+        "interval": [
+          6.295413645204441,
+          11.196773854795559
+        ]
+      },
+      {
+        "scenario": "gateway_failure",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.31640625,
+        "interval": [
+          -1.2563261708411126,
+          1.8891386708411126
+        ]
+      },
+      {
+        "scenario": "misinformation",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.9453125,
+        "interval": [
+          -0.7088501712729804,
+          2.5994751712729807
+        ]
+      },
+      {
+        "scenario": "delayed_calls",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.74609375,
+        "interval": [
+          6.295413645204441,
+          11.196773854795559
+        ]
+      },
+      {
+        "scenario": "missing_streams",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.74609375,
+        "interval": [
+          6.295413645204441,
+          11.196773854795559
+        ]
+      },
+      {
+        "scenario": "monsoon",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 0.31640625,
+        "interval": [
+          -1.2563261708411126,
+          1.8891386708411126
+        ]
+      },
+      {
+        "scenario": "twin_crisis",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.20703125,
+        "interval": [
+          9.03135948358386,
+          13.38270301641614
+        ]
+      },
+      {
+        "scenario": "twin_benign",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.20703125,
+        "interval": [
+          9.03135948358386,
+          13.38270301641614
+        ]
+      },
+      {
+        "scenario": "silent_zone",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 8.74609375,
+        "interval": [
+          6.295413645204441,
+          11.196773854795559
+        ]
+      },
+      {
+        "scenario": "ambiguous",
+        "seed": 130363,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.20703125,
+        "interval": [
+          9.03135948358386,
+          13.38270301641614
+        ]
+      },
+      {
+        "scenario": "normal_rain",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.021484375,
+        "interval": [
+          -0.6216447910463596,
+          2.66461354104636
+        ]
+      },
+      {
+        "scenario": "flood",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.076171875,
+        "interval": [
+          8.445588917308735,
+          13.706754832691265
+        ]
+      },
+      {
+        "scenario": "isolated",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.076171875,
+        "interval": [
+          8.445588917308735,
+          13.706754832691265
+        ]
+      },
+      {
+        "scenario": "gateway_failure",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.021484375,
+        "interval": [
+          -0.6216447910463596,
+          2.66461354104636
+        ]
+      },
+      {
+        "scenario": "misinformation",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.86328125,
+        "interval": [
+          0.11058580403141205,
+          3.615976695968588
+        ]
+      },
+      {
+        "scenario": "delayed_calls",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.076171875,
+        "interval": [
+          8.445588917308735,
+          13.706754832691265
+        ]
+      },
+      {
+        "scenario": "missing_streams",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.076171875,
+        "interval": [
+          8.445588917308735,
+          13.706754832691265
+        ]
+      },
+      {
+        "scenario": "monsoon",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump",
+        "feasible": true,
+        "heldout_net_benefit": 1.021484375,
+        "interval": [
+          -0.6216447910463596,
+          2.66461354104636
+        ]
+      },
+      {
+        "scenario": "twin_crisis",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 12.72265625,
+        "interval": [
+          10.49567566222499,
+          14.94963683777501
+        ]
+      },
+      {
+        "scenario": "twin_benign",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 12.72265625,
+        "interval": [
+          10.49567566222499,
+          14.94963683777501
+        ]
+      },
+      {
+        "scenario": "silent_zone",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 11.076171875,
+        "interval": [
+          8.445588917308735,
+          13.706754832691265
+        ]
+      },
+      {
+        "scenario": "ambiguous",
+        "seed": 155921,
+        "shifted": true,
+        "plan": "pump+access",
+        "feasible": true,
+        "heldout_net_benefit": 12.72265625,
+        "interval": [
+          10.49567566222499,
+          14.94963683777501
+        ]
+      }
+    ]
+  },
+  "spatial": {
+    "cells": 3,
+    "mean_structural_iou_after_blackout": 1.0,
+    "scope": "Toy aggregate-zone agreement with a manually declared fragility truth; not a learned or geographically representative spatial benchmark."
+  },
+  "notes": [
+    "72 held-out scenario/seed/regime combinations per policy. Exactly one optional check chosen at minute 4; response applied through the same replay filter.",
+    "Original policy uses existing three-check VOI choice when currently feasible; new policy ranks six reliability-adjusted catalog checks. Both use the same physical-prefix sampler and event application.",
+    "Episode loss sums base action/hypothesis costs over 19 replay snapshots plus one acquisition fee; it does not double-count modeled delay penalties.",
+    "The verification sampler uses physical facts realized by response time, never eventual outcome labels. Evaluation labels classify the whole episode, so early benign readings can be misleading about eventual crises.",
+    "Cascade plans are selected with one random seed and evaluated with an independent seed under the same declared assumptions. This tests Monte Carlo selection, not real intervention effectiveness.",
+    "IoU is a three-cell structural sanity check. Blackout preserves declared structure by design; perfect structural agreement is not proof of hazard detection or privacy guarantees.",
+    "Check fee when action stays unchanged is reported as a descriptive cost, not proof the check was unnecessary; future value and hysteresis can matter.",
+    "No parameter tuning on these held-out seeds. No automatic claim of accuracy improvement."
+  ]
+}

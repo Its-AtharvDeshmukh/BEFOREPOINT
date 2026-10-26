@@ -1,0 +1,52 @@
+{
+  "health": {
+    "ok": true,
+    "mode": "simulation",
+    "model_version": "beforepoint-0.2-illustrative"
+  },
+  "complete_flood_replay": {
+    "minutes": 18,
+    "normalized": true,
+    "receipt_chain_valid": true,
+    "receipts": 19,
+    "final_action": "ALERT"
+  },
+  "twins": {
+    "identical_prefix": true,
+    "revises_after_minute_7": true,
+    "explicit_reveal": true
+  },
+  "analysis": {
+    "four_strategies": true,
+    "checks": 3
+  },
+  "weather": {
+    "status": 200,
+    "provider": "Open-Meteo",
+    "model_time": "2026-10-25T21:00",
+    "cache_status": "cached"
+  },
+  "firebase": {
+    "client_worker_status": 200,
+    "server_sdk_installed": true,
+    "server_credentials_configured": false,
+    "actual_push_delivery_tested": false
+  },
+  "diagnostics": {
+    "sqlite_integrity": "ok",
+    "stored_records": {
+      "receipts": 131,
+      "observations": 92,
+      "run_metadata": 3,
+      "source_reliability": 0,
+      "source_adjudications": 0,
+      "evaluations": 1
+    },
+    "mode": "local simulation",
+    "model_version": "beforepoint-0.2-illustrative",
+    "current_run": "03bc0b9adb154b5a8699b7b7e8a63acf",
+    "minute": 18,
+    "optional_services_required": false,
+    "public_emergency_broadcasts_enabled": false
+  }
+}

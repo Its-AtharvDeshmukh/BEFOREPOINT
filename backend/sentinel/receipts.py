@@ -22,6 +22,7 @@ class ReceiptStore:
         self.db.execute('CREATE TABLE IF NOT EXISTS source_adjudications(run TEXT, target TEXT, source TEXT, correct INTEGER, learned_minute INTEGER, PRIMARY KEY(run,target))')
         self.db.execute('CREATE TABLE IF NOT EXISTS run_metadata(run TEXT PRIMARY KEY, body TEXT)')
         self.db.execute('CREATE TABLE IF NOT EXISTS evaluations(id INTEGER PRIMARY KEY AUTOINCREMENT, model_version TEXT, body TEXT)')
+        self.db.execute('CREATE TABLE IF NOT EXISTS analyses(run TEXT, id TEXT, body TEXT, PRIMARY KEY(run,id))')
         self.db.commit()
 
     def event(self,run,event):
@@ -90,3 +91,14 @@ class ReceiptStore:
             counts={table:self.db.execute('SELECT count(*) FROM '+table).fetchone()[0]
                 for table in ('receipts','observations','run_metadata','source_reliability','source_adjudications','evaluations')}
             return {'sqlite_integrity':self.db.execute('PRAGMA quick_check').fetchone()[0],'stored_records':counts}
+
+    def save_analysis(self,run,identity,body):
+        with self.lock:
+            record={**body,'analysis_hash':digest(body)}
+            self.db.execute('INSERT OR REPLACE INTO analyses VALUES(?,?,?)',(run,identity,canonical(record)))
+            self.db.commit()
+            return record
+
+    def analyses(self,run):
+        with self.lock:
+            return [json.loads(r[0]) for r in self.db.execute('SELECT body FROM analyses WHERE run=? ORDER BY rowid',(run,))]

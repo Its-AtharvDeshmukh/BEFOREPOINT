@@ -24,9 +24,9 @@ async def fetch_weather(location):
     async with httpx.AsyncClient(timeout=15) as client:
         response=await client.get('https://api.open-meteo.com/v1/forecast',params={
             **{k:v for k,v in LOCATIONS[location].items() if k!='name'},
-            'current':'temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m',
-            'hourly':'temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,rain,wind_speed_10m',
-            'forecast_days':2,'timezone':'Asia/Kolkata'})
+            'current':'temperature_2m,relative_humidity_2m,precipitation,rain,weather_code,wind_speed_10m,wind_gusts_10m,surface_pressure',
+            'hourly':'temperature_2m,relative_humidity_2m,precipitation_probability,precipitation,rain,wind_speed_10m,visibility',
+            'daily':'temperature_2m_max,temperature_2m_min,precipitation_sum,wind_gusts_10m_max','forecast_days':2,'timezone':'Asia/Kolkata'})
         if response.status_code==429:
             try:seconds=int(response.headers.get('Retry-After','60'))
             except ValueError:seconds=60
@@ -83,6 +83,8 @@ class CurrentConditions(BaseModel):
     rain:float=Field(ge=0)
     weather_code:int
     wind_speed_10m:float=Field(ge=0)
+    wind_gusts_10m:float|None=Field(default=None,ge=0)
+    surface_pressure:float|None=Field(default=None,gt=0)
 
 class HourlyConditions(BaseModel):
     model_config=ConfigDict(extra='allow',allow_inf_nan=False)
@@ -93,16 +95,33 @@ class HourlyConditions(BaseModel):
     precipitation:list[float]
     rain:list[float]
     wind_speed_10m:list[float]
+    visibility:list[float|None]|None=None
     @model_validator(mode='after')
     def matching_arrays(self):
         for key in ('temperature_2m','relative_humidity_2m','precipitation_probability','precipitation','rain','wind_speed_10m'):
             if len(getattr(self,key))!=len(self.time):raise ValueError('Weather arrays have inconsistent lengths')
+        if self.visibility is not None and len(self.visibility)!=len(self.time):raise ValueError('Visibility array has inconsistent length')
+        return self
+
+class DailyConditions(BaseModel):
+    model_config=ConfigDict(extra='allow',allow_inf_nan=False)
+    time:list[str]
+    temperature_2m_max:list[float|None]
+    temperature_2m_min:list[float|None]
+    precipitation_sum:list[float|None]
+    wind_gusts_10m_max:list[float|None]
+    @model_validator(mode='after')
+    def matching_arrays(self):
+        for key in ('temperature_2m_max','temperature_2m_min','precipitation_sum','wind_gusts_10m_max'):
+            if len(getattr(self,key))!=len(self.time):raise ValueError('Daily weather arrays have inconsistent lengths')
         return self
 
 class ProviderWeather(BaseModel):
     model_config=ConfigDict(extra='allow')
     current:CurrentConditions
     hourly:HourlyConditions
+    daily:DailyConditions|None=None
+    daily_units:dict[str,str]|None=None
     current_units:dict[str,str]
     hourly_units:dict[str,str]
     timezone:str

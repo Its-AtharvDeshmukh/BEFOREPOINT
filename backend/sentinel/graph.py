@@ -7,7 +7,7 @@ OBSERVATIONS={'rain_high':'rainfall','water_high':'drainage','road_closed':'unde
     'hospital_surge':'hospital','dispatch_delay':'dispatch'}
 
 
-def forecast(events,minute,p,scores=None):
+def observed_seeds(events,minute,p,scores=None):
     local={}
     for e in sorted(events,key=lambda e:(e.arrival_time,e.id)):
         if e.kind in OBSERVATIONS and minute-e.event_time<=8:
@@ -19,6 +19,11 @@ def forecast(events,minute,p,scores=None):
     seeds={}
     for (_,node),value in local.items():
         if node not in seeds or value[0]>seeds[node][0]:seeds[node]=value
+    return seeds
+
+
+def forecast(events,minute,p,scores=None):
+    seeds=observed_seeds(events,minute,p,scores)
     projected={k:(v[0],v[1]) for k,v in seeds.items()}
     paths={k:[k] for k in seeds};support={k:v[2] for k,v in seeds.items()}
     for _ in range(len(C['nodes'])):

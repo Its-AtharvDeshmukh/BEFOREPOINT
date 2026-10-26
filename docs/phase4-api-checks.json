@@ -1,0 +1,31 @@
+{
+  "health": {
+    "status": 200
+  },
+  "lab/prove": {
+    "status": 200
+  },
+  "lab/lifelines": {
+    "status": 200
+  },
+  "lab/evaluation": {
+    "status": 200
+  },
+  "receipts": {
+    "status": 200,
+    "valid": true,
+    "analyses": 4
+  },
+  "weather?location=nagpur": {
+    "status": 200,
+    "time": "2026-10-26T02:30",
+    "gust": 16.6,
+    "pressure": 977.6,
+    "daily_days": 2
+  },
+  "notifications/status": {
+    "status": 200,
+    "credentials": false,
+    "sdk": true
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "seeds": [
+    104729,
+    130363,
+    155921
+  ],
+  "rows": [
+    {
+      "model": "Bayesian",
+      "episodes": 72,
+      "brier_score": 0.13517286573100826,
+      "false_alarm_rate": 0.6666666666666666,
+      "mean_detection_delay": 0.0,
+      "mean_decision_cost": 12.117690058479532,
+      "mean_action_changes": 2.8055555555555554,
+      "next_event_brier": 0.1438469070710936,
+      "model_expected_check_net_value": 1.54850603294244,
+      "mean_evidence_requests": 11.680555555555555,
+      "missing_stream_brier": 0.2321038261450481,
+      "shifted_brier": 0.13811035119537407
+    },
+    {
+      "model": "Fixed threshold",
+      "episodes": 72,
+      "brier_score": 0.17092105263157895,
+      "false_alarm_rate": 0.5,
+      "mean_detection_delay": 0.0,
+      "mean_decision_cost": 12.706140350877194,
+      "mean_action_changes": 1.5,
+      "next_event_brier": null,
+      "model_expected_check_net_value": null,
+      "mean_evidence_requests": null,
+      "missing_stream_brier": 0.26894736842105266,
+      "shifted_brier": 0.17092105263157895
+    },
+    {
+      "model": "Event count",
+      "episodes": 72,
+      "brier_score": 0.23109473684210524,
+      "false_alarm_rate": 0.375,
+      "mean_detection_delay": 0.0,
+      "mean_decision_cost": 17.11842105263158,
+      "mean_action_changes": 1.1666666666666667,
+      "next_event_brier": null,
+      "model_expected_check_net_value": null,
+      "mean_evidence_requests": null,
+      "missing_stream_brier": 0.3201210526315789,
+      "shifted_brier": 0.2310947368421053
+    },
+    {
+      "model": "No gateway grouping",
+      "episodes": 72,
+      "brier_score": 0.13629448254438867,
+      "false_alarm_rate": 0.6666666666666666,
+      "mean_detection_delay": 0.0,
+      "mean_decision_cost": 11.414473684210527,
+      "mean_action_changes": 3.0972222222222223,
+      "next_event_brier": 0.13752815071872343,
+      "model_expected_check_net_value": 1.799456384875003,
+      "mean_evidence_requests": 12.319444444444445,
+      "missing_stream_brier": 0.22771897538817584,
+      "shifted_brier": 0.13558820789910275
+    },
+    {
+      "model": "No reliability weights",
+      "episodes": 72,
+      "brier_score": 0.14034153732593588,
+      "false_alarm_rate": 0.7291666666666666,
+      "mean_detection_delay": 0.0,
+      "mean_decision_cost": 12.878654970760234,
+      "mean_action_changes": 3.0277777777777777,
+      "next_event_brier": 0.14821533597945294,
+      "model_expected_check_net_value": 1.7542247028821,
+      "mean_evidence_requests": 9.194444444444445,
+      "missing_stream_brier": 0.2577178492823892,
+      "shifted_brier": 0.14412881645354086
+    }
+  ],
+  "twin": true,
+  "calibration": {
+    "Bayesian": [
+      {
+        "bin_start": 0.0,
+        "count": 525,
+        "mean_predicted": 0.03922441074282418,
+        "observed_frequency": 0.09142857142857143
+      },
+      {
+        "bin_start": 0.1,
+        "count": 83,
+        "mean_predicted": 0.15337094019401679,
+        "observed_frequency": 0.0
+      },
+      {
+        "bin_start": 0.2,
+        "count": 134,
+        "mean_predicted": 0.23789521499776062,
+        "observed_frequency": 0.31343283582089554
+      },
+      {
+        "bin_start": 0.3,
+        "count": 127,
+        "mean_predicted": 0.3542171242822259,
+        "observed_frequency": 0.30708661417322836
+      },
+      {
+        "bin_start": 0.4,
+        "count": 114,
+        "mean_predicted": 0.4510973363309789,
+        "observed_frequency": 0.38596491228070173
+      },
+      {
+        "bin_start": 0.5,
+        "count": 113,
+        "mean_predicted": 0.5549967664925898,
+        "observed_frequency": 0.4247787610619469
+      },
+      {
+        "bin_start": 0.6,
+        "count": 88,
+        "mean_predicted": 0.6430918878621769,
+        "observed_frequency": 0.5795454545454546
+      },
+      {
+        "bin_start": 0.7,
+        "count": 58,
+        "mean_predicted": 0.7596900447305495,
+        "observed_frequency": 1.0
+      },
+      {
+        "bin_start": 0.8,
+        "count": 80,
+        "mean_predicted": 0.8524031226583894,
+        "observed_frequency": 1.0
+      },
+      {
+        "bin_start": 0.9,
+        "count": 46,
+        "mean_predicted": 0.9190754981351603,
+        "observed_frequency": 1.0
+      }
+    ],
+    "Fixed threshold": [
+      {
+        "bin_start": 0.0,
+        "count": 888,
+        "mean_predicted": 0.05000000000000001,
+        "observed_frequency": 0.14864864864864866
+      },
+      {
+        "bin_start": 0.8,
+        "count": 480,
+        "mean_predicted": 0.8000000000000002,
+        "observed_frequency": 0.675
+      }
+    ],
+    "Event count": [
+      {
+        "bin_start": 0.0,
+        "count": 810,
+        "mean_predicted": 0.05,
+        "observed_frequency": 0.15555555555555556
+      },
+      {
+        "bin_start": 0.1,
+        "count": 258,
+        "mean_predicted": 0.16999999999999993,
+        "observed_frequency": 0.4418604651162791
+      },
+      {
+        "bin_start": 0.2,
+        "count": 174,
+        "mean_predicted": 0.29,
+        "observed_frequency": 0.6551724137931034
+      },
+      {
+        "bin_start": 0.4,
+        "count": 78,
+        "mean_predicted": 0.41000000000000003,
+        "observed_frequency": 1.0
+      },
+      {
+        "bin_start": 0.5,
+        "count": 24,
+        "mean_predicted": 0.53,
+        "observed_frequency": 1.0
+      },
+      {
+        "bin_start": 0.9,
+        "count": 24,
+        "mean_predicted": 0.98,
+        "observed_frequency": 0.0
+      }
+    ],
+    "No gateway grouping": [
+      {
+        "bin_start": 0.0,
+        "count": 589,
+        "mean_predicted": 0.03909266003795195,
+        "observed_frequency": 0.11205432937181664
+      },
+      {
+        "bin_start": 0.1,
+        "count": 95,
+        "mean_predicted": 0.154839820282835,
+        "observed_frequency": 0.06315789473684211
+      },
+      {
+        "bin_start": 0.2,
+        "count": 140,
+        "mean_predicted": 0.23880936425781804,
+        "observed_frequency": 0.3142857142857143
+      },
+      {
+        "bin_start": 0.3,
+        "count": 127,
+        "mean_predicted": 0.3491696033548575,
+        "observed_frequency": 0.29133858267716534
+      },
+      {
+        "bin_start": 0.4,
+        "count": 105,
+        "mean_predicted": 0.4533624792446497,
+        "observed_frequency": 0.41904761904761906
+      },
+      {
+        "bin_start": 0.5,
+        "count": 66,
+        "mean_predicted": 0.5443470644798541,
+        "observed_frequency": 0.6060606060606061
+      },
+      {
+        "bin_start": 0.6,
+        "count": 69,
+        "mean_predicted": 0.6501556750831063,
+        "observed_frequency": 0.6521739130434783
+      },
+      {
+        "bin_start": 0.7,
+        "count": 48,
+        "mean_predicted": 0.7537096086939131,
+        "observed_frequency": 0.9375
+      },
+      {
+        "bin_start": 0.8,
+        "count": 86,
+        "mean_predicted": 0.8531152402015417,
+        "observed_frequency": 1.0
+      },
+      {
+        "bin_start": 0.9,
+        "count": 43,
+        "mean_predicted": 0.9201378727804067,
+        "observed_frequency": 1.0
+      }
+    ],
+    "No reliability weights": [
+      {
+        "bin_start": 0.0,
+        "count": 492,
+        "mean_predicted": 0.031304060489528523,
+        "observed_frequency": 0.07317073170731707
+      },
+      {
+        "bin_start": 0.1,
+        "count": 110,
+        "mean_predicted": 0.12906617255041006,
+        "observed_frequency": 0.10909090909090909
+      },
+      {
+        "bin_start": 0.2,
+        "count": 88,
+        "mean_predicted": 0.25525164308049475,
+        "observed_frequency": 0.10227272727272728
+      },
+      {
+        "bin_start": 0.3,
+        "count": 98,
+        "mean_predicted": 0.3302020160649665,
+        "observed_frequency": 0.336734693877551
+      },
+      {
+        "bin_start": 0.4,
+        "count": 96,
+        "mean_predicted": 0.4378080040305902,
+        "observed_frequency": 0.4791666666666667
+      },
+      {
+        "bin_start": 0.5,
+        "count": 103,
+        "mean_predicted": 0.5490264555628851,
+        "observed_frequency": 0.5533980582524272
+      },
+      {
+        "bin_start": 0.6,
+        "count": 103,
+        "mean_predicted": 0.6457456484210572,
+        "observed_frequency": 0.36893203883495146
+      },
+      {
+        "bin_start": 0.7,
+        "count": 108,
+        "mean_predicted": 0.7464677505825656,
+        "observed_frequency": 0.5185185185185185
+      },
+      {
+        "bin_start": 0.8,
+        "count": 82,
+        "mean_predicted": 0.8528529863689926,
+        "observed_frequency": 0.9878048780487805
+      },
+      {
+        "bin_start": 0.9,
+        "count": 88,
+        "mean_predicted": 0.9411905333461967,
+        "observed_frequency": 1.0
+      }
+    ]
+  },
+  "verification_policy": {
+    "trials": 72,
+    "checks_requested": 42,
+    "mean_no_check_loss": 17.55322821897786,
+    "mean_policy_loss": 15.438472199530667,
+    "realized_mean_benefit": 2.114756019447195,
+    "scope": "One-shot paired synthetic check at minute 7. Uses withheld labels only to sample outcomes and score realized loss; no intervention changes infrastructure."
+  },
+  "notes": [
+    "Synthetic benchmark, not field validation. Frozen illustrative parameters.",
+    "Crisis Brier target is eventual episode label; early uncertainty is expected.",
+    "False alarms: any ALERT/ESCALATE in a non-cascade episode, including isolated incidents.",
+    "Detection delay measured from onset at minute 10; missed cases penalized through end+1.",
+    "Forecast Brier is conditional on emitted candidates, not all-node calibration.",
+    "Per-minute VOI values are model expectations. Separate verification_policy reports one-shot sampled counterfactual check costs and realized decision losses.",
+    "Baselines do not emit infrastructure forecasts; their forecast scores are null."
+  ]
+}

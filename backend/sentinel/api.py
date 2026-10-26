@@ -18,6 +18,7 @@ from .weather import router as weather_router
 from .twin_lab import router as twin_router, lab
 from .notifications import notification_router
 from .analysis import analysis_router
+from .flagship_api import flagship_router
 
 store=ReceiptStore(os.environ.get('SENTINEL_DB','sentinel.sqlite3'))
 replay=Replay(store=store)
@@ -39,6 +40,7 @@ app=FastAPI(title='BEFOREPOINT',version='0.2.0',lifespan=lifespan)
 app.include_router(weather_router)
 app.include_router(twin_router)
 app.include_router(analysis_router(lambda: replay))
+app.include_router(flagship_router(lambda: replay))
 app.include_router(notification_router(store.db,store.lock))
 
 @app.get('/api/health')
@@ -101,7 +103,7 @@ def citizen(request:CitizenRequest):
 @app.get('/api/receipts')
 def receipts(run_id:str|None=None):
     selected=run_id or replay.run_id
-    return {'run_id':selected,'valid':store.verify(selected),'receipts':store.list(selected)}
+    return {'run_id':selected,'valid':store.verify(selected),'receipts':store.list(selected),'analyses':store.analyses(selected)}
 
 @app.get('/api/runs')
 def runs(): return store.runs()

@@ -1,0 +1,18 @@
+{
+  "backend_tests": 80,
+  "frontend_tests": 13,
+  "production_build": "passed",
+  "original_baseline_rows_match": true,
+  "responsive_widths": [
+    375,
+    430,
+    768,
+    1024,
+    1440,
+    1920
+  ],
+  "flagship_page_width_checks": 24,
+  "workspace_navigation_checks": 14,
+  "console_errors": 0,
+  "model_version": "beforepoint-0.2-illustrative"
+}

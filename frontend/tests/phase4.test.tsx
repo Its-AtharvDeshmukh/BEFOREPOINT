@@ -1,0 +1,21 @@
+import React from 'react';
+import {it,expect,vi,beforeEach} from 'vitest';
+import {render,screen,waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {QueryClient,QueryClientProvider} from '@tanstack/react-query';
+import * as Tooltip from '@radix-ui/react-tooltip';
+import fixture from './engine.fixture.json';
+import experiments from './phase4.fixture.json';
+import {ProveMeWrong,CascadeCut,InvisibleLifelines} from '../src/pages/Flagships';
+import {api} from '../src/lib/utils';
+const mocked=vi.hoisted(()=>({context:{} as Record<string,unknown>}));
+vi.mock('../src/context',()=>({useApp:()=>mocked.context}));
+vi.mock('../src/lib/utils',async original=>({...await original<object>(),api:vi.fn()}));
+vi.mock('../src/pages/Intelligence',()=>({ActOrVerify:()=>null,DominoClock:()=>null,SilentZone:()=>null}));
+beforeEach(()=>{mocked.context={state:fixture.state,config:fixture.config,mode:'simulation',navigate:vi.fn()};vi.mocked(api).mockReset();vi.mocked(api).mockImplementation(async path=>path==='lab/prove'?experiments.ranking as never:path==='lab/lifelines'?experiments.lifelines as never:experiments.cascade as never)});
+function wrapper(child:React.ReactNode){const q=new QueryClient({defaultOptions:{queries:{retry:false}}});return {q,...render(<QueryClientProvider client={q}><Tooltip.Provider>{child}</Tooltip.Provider></QueryClientProvider>)}}
+it('requests a catalog check against the displayed backend snapshot',async()=>{wrapper(<ProveMeWrong/>);await screen.findByRole('button',{name:'Run this simulation check'});await userEvent.click(screen.getByRole('button',{name:'Run this simulation check'}));expect(vi.mocked(api).mock.calls.find(([p])=>p==='lab/prove/request')?.[1]).toEqual({candidate_id:experiments.ranking.best_available,snapshot_hash:experiments.ranking.snapshot_hash})});
+it('shows backend failure without inventing verification results',async()=>{vi.mocked(api).mockRejectedValue(new Error('Analysis unavailable'));wrapper(<ProveMeWrong/>);expect(await screen.findByText('Analysis unavailable')).toBeTruthy();expect(screen.queryByRole('button',{name:'Run this simulation check'})).toBeNull()});
+it('keeps an early verification reveal disabled',async()=>{vi.mocked(api).mockImplementation(async()=>({...experiments.ranking,tickets:[{candidate_id:'water',status:'pending',minute:3,due_minute:6}]}) as never);wrapper(<ProveMeWrong/>);expect((await screen.findByRole('button',{name:'Reveal & apply next minute'})).hasAttribute('disabled')).toBe(true)});
+it('sends resource and timing settings to the paired simulator',async()=>{wrapper(<CascadeCut/>);await userEvent.clear(screen.getByLabelText('Available crews'));await userEvent.type(screen.getByLabelText('Available crews'),'1');await userEvent.click(screen.getByRole('button',{name:'Compare intervention plans'}));await waitFor(()=>expect(vi.mocked(api).mock.calls.some(([p])=>p==='lab/cascade')).toBe(true));expect(vi.mocked(api).mock.calls.find(([p])=>p==='lab/cascade')?.[1]).toMatchObject({crews:1,pumps:1,budget:9,start_delay:0,samples:1024,snapshot_hash:fixture.state.current.hash});expect(await screen.findByText('Feasible choices, ranked by total expected loss')).toBeTruthy()});
+it('updates the shared engine after the blackout and keeps layers separate',async()=>{vi.mocked(api).mockImplementation(async path=>path==='lab/lifelines'?experiments.lifelines as never:{state:{...fixture.state,current:{...fixture.state.current,minute:4}},result:experiments.lifelines} as never);const {q}=wrapper(<InvisibleLifelines/>);await userEvent.click(await screen.findByRole('button',{name:'Observation coverage'}));expect(screen.getByRole('button',{name:'Observation coverage'}).getAttribute('aria-pressed')).toBe('true');await userEvent.click(screen.getByRole('button',{name:'Disconnect 60% of eligible streams'}));await waitFor(()=>expect((q.getQueryData(['engine']) as {current:{minute:number}})?.current.minute).toBe(4));expect(vi.mocked(api).mock.calls.find(([p])=>p==='lab/lifelines/blackout')?.[1]).toMatchObject({seed:fixture.state.seed,snapshot_hash:experiments.lifelines.snapshot_hash})});
